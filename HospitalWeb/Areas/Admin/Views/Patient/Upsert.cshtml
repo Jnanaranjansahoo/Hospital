@@ -1,0 +1,81 @@
+﻿@model Patient
+
+
+<div class="card shadow border-0 m-4">
+    <div class="card-header bg-secondary bg-gradient ml-0 py-3">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h2 cla ss="text-white py-2 ">Add Patient</h2>
+            </div>
+        </div>
+    </div>
+    <div class=" card-body p-4">
+        <form method="post" class="row">
+            <div class="border p-3 mt-4">
+
+                @* <div class="text-danger" asp-validation-summary="ModelOnly"></div> *@
+                <div class="form-floating py-2 col-12">
+                    <input asp-for="Name" class="form-control border-0 shadow" />
+                    <label asp-for="Name" class="ms-2"></label>
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="form-floating py-2 col-12">
+                    <input asp-for="Email" class="form-control border-0 shadow" />
+                    <label asp-for="Email" class="ms-2 text-dark"></label>
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="form-floating py-2 col-12">
+                    <input asp-for="Phone" class="form-control border-0 shadow" />
+                    <label asp-for="Phone" class="ms-2 text-dark"></label>
+                    <span asp-validation-for="Phone" class="text-danger"></span>
+                </div>
+                <div class="form-floating py-2 col-12">
+                    <input asp-for="Age" class="form-control border-0 shadow" />
+                    <label asp-for="Age" class="ms-2 text-dark"></label>
+                    <span asp-validation-for="Age" class="text-danger"></span>
+                </div>
+                <div class="form-floating py-2 col-12">
+                    <input asp-for="Gender" class="form-control border-0 shadow" />
+                    <label asp-for="Gender" class="ms-2 text-dark"></label>
+                    <span asp-validation-for="Gender" class="text-danger"></span>
+                </div>
+                
+                <div class="form-floating py-2 col-12">
+                    <input asp-for="Guardian" class="form-control border-0 shadow" />
+                    <label asp-for="Guardian" class="ms-2 text-dark"></label>
+                    <span asp-validation-for="Guardian" class="text-danger"></span>
+                </div>
+                <div class="form-floating py-2 col-12">
+                    <textarea asp-for="Address" class="form-control border-0 shadow"></textarea>
+                    <label asp-for="Address" class="ms-2 text-dark"></label>
+                    <span asp-validation-for="Address" class="text-danger"></span>
+                </div>
+                <div class="form-floating py-2 col-12">
+                    <input asp-for="Resion" class="form-control border-0 shadow" />
+                    <label asp-for="Resion" class="ms-2 text-dark"></label>
+                    <span asp-validation-for="Resion" class="text-danger"></span>
+                </div>
+                <div class="form-floating py-2 col-12">
+                    <input asp-for="Depatment" class="form-control border-0 shadow" />
+                    <label asp-for="Depatment" class="ms-2 text-dark"></label>
+                    <span asp-validation-for="Depatment" class="text-danger"></span>
+                </div>
+                <div class="row pt-2">
+                    <div class="col-6 col-md-3">
+                        <button type="submit" class="btn btn-primary form-control">Add</button>
+                    </div>
+                    <div class=" col-6 col-md-3">
+                        <a asp-controller="Patient" asp-action="Index" class="btn btn-outline-primary border form-control">
+                            Back To List
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+@section Scripts {
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}
