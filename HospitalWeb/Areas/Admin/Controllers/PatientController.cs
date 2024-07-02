@@ -1,6 +1,7 @@
 ﻿using Hospital.DataAcess.Data;
 using Hospital.DataAcess.Repository.IRepository;
 using Hospital.Models;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HospitalWeb.Areas.Admin.Controllers
@@ -59,34 +60,28 @@ namespace HospitalWeb.Areas.Admin.Controllers
             return View(PatienyObj);
         }
 
+        #region API Class
+        [HttpGet]
+        public IActionResult GetAll()
+        {
+            List<Patient> objPatientList = _unitOfWork.Patient.GetAll().ToList();
+            return Json(new {data = objPatientList});
+        }
+        [HttpDelete]
         public IActionResult Delete(int? id)
         {
-            if (id == null || id == 0)
+            var PatientToBeDeleted = _unitOfWork.Patient.Get(u => u.Id == id);
+            if (PatientToBeDeleted == null)
             {
-                return NotFound();
-            }
-            Patient? PatientFromDb = _unitOfWork.Patient.Get(u => u.Id == id);
-
-            if (PatientFromDb == null)
-            {
-                return NotFound();
+                return Json(new { success = false, message = "Error while deleting" });
             }
 
-            return View(PatientFromDb);
-        }
-        [HttpPost, ActionName("Delete")]
-        public IActionResult DeletePOST(int? id)
-        {
-            Patient? obj = _unitOfWork.Patient.Get(u => u.Id == id);
-            if (obj == null)
-            {
-                return NotFound();
-            }
-            _unitOfWork.Patient.Remove(obj);
+            _unitOfWork.Patient.Remove(PatientToBeDeleted);
             _unitOfWork.Save();
-            TempData["success"] = "Patient's Data Deleted Successfully";
-            return RedirectToAction("Index");
 
+
+            return Json(new { success = true, message = "Delete Successful" });
         }
+        #endregion 
     }
 }

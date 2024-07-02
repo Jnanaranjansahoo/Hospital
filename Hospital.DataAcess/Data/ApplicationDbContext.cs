@@ -13,7 +13,7 @@ namespace Hospital.DataAcess.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder .Entity<Patient>().HasData (
-                new Patient { Id = 1,
+                new Patient { Id = 100,
                               Name = "Patient",
                               Email = "patient@gmail.com",
                               Phone = 1234567890,
@@ -25,7 +25,7 @@ namespace Hospital.DataAcess.Data
                               Depatment = "Depatments"
                 },
               
-                new Patient { Id = 2,
+                new Patient { Id = 101,
                               Name = "Patient2",
                               Email = "2patient@gmail.com",
                               Phone = 1234567890,
